@@ -33,4 +33,5 @@ jobs:
           python src/main.py
         env:
           PIVOTAL_TOKEN: '$PIVOTAL_TOKEN'
+          SLACK_TOKEN: '$SLACK_TOKEN'
         displayName: 'Run python script'
