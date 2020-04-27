@@ -26,11 +26,14 @@ jobs:
           versionSpec: '$(PYTHON_VERSION)'
 
       - script: |
+          python3 --version
+          pip3 --version
+
           pip3 install -r ./requirements.txt
         displayName: 'Install dependencies'
 
       - script: |
-          python src/main.py
+          python3 src/main.py
         env:
           PIVOTAL_TOKEN: '$PIVOTAL_TOKEN'
           SLACK_TOKEN: '$SLACK_TOKEN'
