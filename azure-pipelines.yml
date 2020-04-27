@@ -2,14 +2,14 @@
 # last 7 days period for a given list of Pivotal projects. Optionally, the report can also be 
 # sent to a Slack channel.
 #
-# You need to add the following pipeline variables using the Azure DevOps portal: 
+# You need to add the following pipeline variables using the Azure DevOps UI: 
 # - PIVOTAL_TOKEN:       [mandatory] a valid Pivotal token to access the stories in the projects
 # - PIVOTAL_PROJECT_IDS: [optional] csv list of project IDs (by default an hard-coded list is used)
 # - SCLACK_CHANNEL:      [optional] the Slack channel name (default: "#io_dev"; skip Slack if "")
 # - SLACK_TOKEN:         [optional] a valid Slack token (mandatory if SCLACK_CHANNEL != "")
 #
 # If you want to run this pipeline by using scheduled triggers, you must define your scheduling
-# preferences by editing the pipeline trigger configuration using the Azure DevOps portal.
+# preferences by editing the pipeline trigger configuration using the Azure DevOps UI.
 
 variables:
   - name: PYTHON_VERSION
@@ -20,7 +20,7 @@ trigger: none
 pr: none
 
 jobs:  
-  - job: 'week_stories'
+  - job: 'Pivotal_stories_report' 
     pool:
       vmImage: 'ubuntu-latest'
     steps:
