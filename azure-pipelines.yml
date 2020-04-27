@@ -1,27 +1,31 @@
-- job: 'library_flit'
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  strategy:
-    matrix:
-      Python36:
-        python.version: '3.6'
-      Python37:
-        python.version: '3.7'
-    maxParallel: 2
-  steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '$(python.version)'
-  - script: |
-      python -m pip install --upgrade pip
-      pip install pytest flit mock codecov pydocstyle pytest-cov
-      cd library-flit
-      flit install
-    displayName: 'Install dependencies'
-  - script: |
-      cd library-flit
-      python -m pytest tests/ --junitxml=../reports/library-flit.xml --cov=demolib
-      codecov
-    displayName: 'pytest'
-    env:
-      CODECOV_TOKEN: '<CODECOV.IO TOKEN'
+# Azure DevOps pipeline to generate a report of the Pivotal stories completed in the last predefined 
+# period of time for all interesting projects. Optionally, the report can also be sent to a Slack 
+# channel.
+#
+# You need to add the following pipeline variables and set them with valid tokens: 
+# - PIVOTAL_TOKEN: a valid Pivotal token to access the stories in the projects
+# - SLACK_TOKEN: if you want to forward a message to Slack
+
+variables:
+  - name: PYTHON_VERSION
+    value: '3.7'
+
+jobs:  
+  - job: 'week_stories'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - checkout: self
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: '$(PYTHON_VERSION)'
+
+      - script: |
+          echo 'DONE'
+        displayName: 'Install dependencies'
+
+      - script: |
+          python src/main.py
+        env:
+          PIVOTAL_TOKEN: '$PIVOTAL_TOKEN'
+        displayName: 'Run python script'
