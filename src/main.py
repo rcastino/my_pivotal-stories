@@ -61,7 +61,7 @@ for project_id in project_ids:
         send_slack_message(slack_token, slack_channel, slack_message)
         send_slack_message(slack_token, slack_channel, "#" * 25)
     else: 
-        print slack_message
+        print (slack_message)
         print "#" * 25
 
 for project_id in project_no_stories:
@@ -73,7 +73,7 @@ for project_id in project_no_stories:
         send_slack_message(slack_token, slack_channel, "*no stories*")
         send_slack_message(slack_token, slack_channel, "#" * 25)
     else: 
-        print slack_message
+        print (slack_message)
         print "*no stories*"
         print "#" * 25
 
