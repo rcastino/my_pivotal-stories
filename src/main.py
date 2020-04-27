@@ -19,7 +19,7 @@ if len(pivotal_token) <= 0:
     exit(1)
 
 if len(project_ids_csv) <= 0:
-    # use the default list of projects
+    # use the default list of projects if not specified
     project_ids = [2048617,  # io / app
                    2116794,  # io / api backend
                    2088623,  # io / api per le PA
@@ -27,8 +27,8 @@ if len(project_ids_csv) <= 0:
                    2431303,  # io / infrastructure
                    2420220,  # io / integration
                    2169201,  # io / io.italia.it
-                   2161158,  # io / pagopa proxy
-               ]
+                   2161158   # io / pagopa proxy
+                  ]
 else:
     # use the list of projects ids provided in input
     project_ids = list(map(int, project_ids_csv.split(",")))
@@ -61,8 +61,8 @@ for project_id in project_ids:
         send_slack_message(slack_token, slack_channel, slack_message)
         send_slack_message(slack_token, slack_channel, "#" * 25)
     else: 
-        print (slack_message)
-        print ("#" * 25)
+        print(slack_message)
+        print("#" * 25)
 
 for project_id in project_no_stories:
     project = pivotal.get_project(project_id)
@@ -73,7 +73,7 @@ for project_id in project_no_stories:
         send_slack_message(slack_token, slack_channel, "*no stories*")
         send_slack_message(slack_token, slack_channel, "#" * 25)
     else: 
-        print (slack_message)
-        print ("*no stories*")
-        print ("#" * 25)
+        print(slack_message)
+        print("*no stories*")
+        print("#" * 25)
 
