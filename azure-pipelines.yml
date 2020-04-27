@@ -18,10 +18,9 @@ variables:
 # We want to run this pipeline by only using scheduled triggers (disable PR and CI triggers)
 trigger: none
 pr: none
-
 schedules:
-  - cron: "0 12 * * 0"
-    displayName: Weekly Monday Report
+  - cron: "0 16 * * 0"
+    displayName: Weekly Monday Report "0 4 * * 0"
     branches:
       include:
       - master
