@@ -14,7 +14,7 @@ if 0 in (len(pivotal_token), len(slack_token)):
     exit(1)
 
 # slack channel to send reports
-slack_channel = "#dev_io"
+slack_channel = "#io_ci_test"  #"#dev_io"
 # define all project ids we want to print stories overview
 project_ids = [2048617,  # io / app
                2116794,  # io / api backend
