@@ -13,7 +13,7 @@
 
 variables:
   - name: PYTHON_VERSION
-    value: '3.7'
+    value: '3.6'
 
 jobs:  
   - job: 'week_stories'
