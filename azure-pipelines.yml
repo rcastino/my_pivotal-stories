@@ -1,0 +1,27 @@
+- job: 'library_flit'
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  strategy:
+    matrix:
+      Python36:
+        python.version: '3.6'
+      Python37:
+        python.version: '3.7'
+    maxParallel: 2
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(python.version)'
+  - script: |
+      python -m pip install --upgrade pip
+      pip install pytest flit mock codecov pydocstyle pytest-cov
+      cd library-flit
+      flit install
+    displayName: 'Install dependencies'
+  - script: |
+      cd library-flit
+      python -m pytest tests/ --junitxml=../reports/library-flit.xml --cov=demolib
+      codecov
+    displayName: 'pytest'
+    env:
+      CODECOV_TOKEN: '<CODECOV.IO TOKEN'
