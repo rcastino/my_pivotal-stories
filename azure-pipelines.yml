@@ -25,14 +25,14 @@ jobs:
         inputs:
           versionSpec: '$(PYTHON_VERSION)'
 
-      - script: |
+      - bash: |
           python3 --version
           pip3 --version
 
           pip3 install -r ./requirements.txt
         displayName: 'Install dependencies'
 
-      - script: |
+      - bash: |
           python3 src/main.py
         env:
           PIVOTAL_TOKEN: '$PIVOTAL_TOKEN'
