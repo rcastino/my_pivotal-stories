@@ -21,7 +21,7 @@ jobs:
           versionSpec: '$(PYTHON_VERSION)'
 
       - script: |
-          echo 'DONE'
+          pip install -r ./requirements.txt
         displayName: 'Install dependencies'
 
       - script: |
