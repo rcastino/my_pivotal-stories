@@ -62,7 +62,7 @@ for project_id in project_ids:
         send_slack_message(slack_token, slack_channel, "#" * 25)
     else: 
         print (slack_message)
-        print "#" * 25
+        print ("#" * 25)
 
 for project_id in project_no_stories:
     project = pivotal.get_project(project_id)
@@ -74,6 +74,6 @@ for project_id in project_no_stories:
         send_slack_message(slack_token, slack_channel, "#" * 25)
     else: 
         print (slack_message)
-        print "*no stories*"
-        print "#" * 25
+        print ("*no stories*")
+        print ("#" * 25)
 
